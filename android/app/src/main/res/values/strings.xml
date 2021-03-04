@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">PracticeApp</string>
+    <string name="facebook_app_id">333536554712902</string>
+    <string name="fb_login_protocol_scheme">fb333536554712902</string>
+
+</resources>
