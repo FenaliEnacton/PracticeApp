@@ -8,5 +8,6 @@
 #ifndef PracticeApp_Bridging_Header_h
 #define PracticeApp_Bridging_Header_h
 
+#import "RNSplashScreen.h"
 
 #endif /* PracticeApp_Bridging_Header_h */

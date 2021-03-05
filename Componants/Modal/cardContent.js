@@ -18,18 +18,19 @@ const CardContent = ({ toggleModel, Stores }) => {
                             uri: Stores?.store?.logo
                         }} />
                     </View>
-                    <Text style={{ marginTop: 10, fontSize: 14, fontWeight: 'bold' }}>{Stores?.title}</Text>
-                    <Text style={{ marginTop: 13, color: 'orange' }}>{Stores?.store?.cashback_string}</Text>
-                    <Text style={{ marginTop: 13, fontSize: 12 }}>PromoCode is Required</Text>
-                    <Text style={{ fontSize: 12 }}>The Deal applies to a specific group of goods</Text>
-
+                    <Text style={{ fontSize: 14, fontWeight: 'bold' }}>{Stores?.title}</Text>
+                    <Text style={{ color: 'orange' }}>{Stores?.store?.cashback_string}</Text>
+                    <View style={{ alignItems: "center" }}>
+                        <Text style={{ fontSize: 12 }}>PromoCode is Required</Text>
+                        <Text style={{ fontSize: 12 }}>The Deal applies to a specific group of goods</Text>
+                    </View>
                     {/* if code == null  */}
                     <View style={styles.code}>
                         {Stores?.code != null ? <View style={styles.coupon_view}>
                             <Text style={{ fontSize: 12, color: '#E6936B' }}>{Stores?.code}</Text>
                         </View>
                             : null}
-                        <View style={{ marginLeft: 10 }} ><Text style={{ fontSize: 12 }}>{Stores?.expiry_date}</Text></View>
+                        <View  ><Text style={{ fontSize: 12 }}>{Stores?.expiry_date}</Text></View>
                     </View>
                     <TouchableOpacity style={styles.shop_now_btn}>
                         <Text style={{ color: 'white' }}>Shop Now</Text>
@@ -43,7 +44,7 @@ export default CardContent
 
 const styles = StyleSheet.create({
     rootView: {
-        height: "40%",
+        height: "45%",
         backgroundColor: "white",
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
@@ -51,7 +52,8 @@ const styles = StyleSheet.create({
     },
     containerView: {
         height: "100%",
-        width: "100%"
+        width: "100%",
+        //justifyContent: 'space-evenly'
         //backgroundColor: 'yellow'
     },
     notch: {
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     },
     content_view: {
         flex: 1,
-        //justifyContent: 'space-evenly',
+        justifyContent: 'space-evenly',
         alignItems: 'center'
         //backgroundColor: 'black',
     },

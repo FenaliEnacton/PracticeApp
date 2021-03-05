@@ -47,8 +47,8 @@ class Home extends Component {
 
             this.props.fetch_Stores();
             this.setState({ flag: 1 })
-            // console.log('Componanat did Mount called....');
         }
+        console.log('Loading state CDM:', this.props.Loader);
     }
 
     componentDidUpdate(prevProps, preState) {
@@ -60,6 +60,7 @@ class Home extends Component {
             this.setState({ Offer_Id: this.props?.Stores?.data?.data['procash/top-offers']?.categories[0]?.coupons })
             this.setState({ Top_Deals: this.props.Stores?.data?.data['procash/top-deals']?.categories })
             this.setState({ Deal_Id: this.props.Stores?.data?.data['procash/top-deals']?.categories[0]?.deals })
+            console.log('Loading state:', this.props.Loader);
             //this.setState({ offset: new Animated.Value(0) })
         }
     }

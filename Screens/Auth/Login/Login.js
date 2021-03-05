@@ -34,7 +34,7 @@ const Login = ({ navigation }) => {
         dispatch(Request_user_login(Email, Password));
         AsyncStorage.getItem('Auth')
             .then((data) => {
-                console.log("LoginHandler:", data);
+                //console.log("LoginHandler:", data);
                 if (data != "0") {
                     navigation.navigate("Home")
                 }

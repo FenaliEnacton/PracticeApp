@@ -19,21 +19,21 @@ const LoginWith = ({ styles }) => {
         LoginManager.logInWithPermissions(["public_profile", "email"]).then(
             function (result) {
                 if (result.isCancelled) {
-                    console.log("Login cancelled");
+                    //console.log("Login cancelled");
                 } else {
                     AccessToken.getCurrentAccessToken().then(
                         (data) => {
                             //console.log(data.accessToken.toString());
                             UserFBLOgin(data.accessToken.toString()).then((data) => {
-                                console.log("Data:", data);
+                                //console.log("Data:", data);
                                 dispatch(Success_user_fb_login(data));
                             })
                         }
                     )
-                    console.log(
-                        "Login success with permissions: " +
-                        result.grantedPermissions.toString()
-                    );
+                    // console.log(
+                    //     "Login success with permissions: " +
+                    //     result.grantedPermissions.toString()
+                    // );
                 }
             },
             function (error) {

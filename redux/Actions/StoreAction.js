@@ -4,7 +4,8 @@ export const Fetch_store_data = (data) => {
     //console.log("Action:", data);
     return {
         type: types.FETCH_STORE_DATA,
-        Stores: data
+        Stores: data,
+        loading: false
     }
 }
 
@@ -12,7 +13,7 @@ export const Request_store_data = () => {
     //console.log("Actionsdfsfsdfdsfdssdfs:");
     return {
         type: types.REQUEST_STORE_DATA,
-
+        loading: true
     }
 }
 

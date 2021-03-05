@@ -6,12 +6,13 @@ const initialstate = {
 }
 export const StoreReducer = (state = initialstate, action) => {
     switch (action.type) {
-        case types.REQUEST_STORE_DATA:
-            return {
-                ...state,
-                loading: true
-            }
+        // case types.REQUEST_STORE_DATA:
+        //     return {
+        //         ...state,
+        //         loading: true
+        //     }
         case types.FETCH_STORE_DATA:
+            //console.log("Before Called Reducer:", state.loading);
             return {
                 ...state,
                 stores: action.Stores,

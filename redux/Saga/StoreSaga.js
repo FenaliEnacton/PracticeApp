@@ -17,9 +17,18 @@ function* Watcher_Store() {
 }
 
 function* Fetch_Store_Saga() {
-    const response = yield call(Fetch_store_api, '/public/home')
-    //console.log("data", response)
-    yield put(Fetch_store_data(response))
+    try {
+        const response = yield call(Fetch_store_api, '/public/home')
+        if (!response?.problem) {
+            yield put(Fetch_store_data(response))
+        }
+        //console.log("response", response)
+
+    }
+    catch (error) {
+        console.log("error")
+    }
+
 }
 
 function* Request_Store_Saga() {
@@ -27,10 +36,12 @@ function* Request_Store_Saga() {
     const response = yield call(Request_store_api, Config.API_URL + Config.PUBLIC_PREFIX + '/app/stores');
     if (response.ok) {
 
-        console.log("Store_More_Info:", response.data.data)
+        //console.log("Store_More_Info:", response.data.data)
         yield put(Success_store_detail(response.data.data))
-    }
 
+    }
+    else
+        console.log("Request Fail")
 }
 
 export default Watcher_Store
