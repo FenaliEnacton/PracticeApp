@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     close_btn_view: {
         justifyContent: 'flex-end',
         marginRight: 10,
-        marginTop: 5,
+        marginTop: 10,
         alignItems: 'flex-end'
     },
     child_footer: {
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
 
     },
     sociallogin: {
-        height: 35,
+        height: 40,
         width: windowWidth - 120,
         flexDirection: 'row',
         alignItems: 'center',
@@ -108,7 +108,7 @@ export const styles = StyleSheet.create({
         fontSize: 12,
         color: 'grey',
         fontWeight: 'bold',
-
+        marginVertical: 5,
         alignSelf: 'center',
         marginHorizontal: 15
     },
@@ -155,7 +155,7 @@ export const styles = StyleSheet.create({
     },
     signin: {
         width: windowWidth - 70,
-        height: 35,
+        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 30,

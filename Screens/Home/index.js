@@ -68,16 +68,11 @@ class Home extends Component {
 
 
     Store_Id_fun = (id) => {
-        // console.log("Top Stores", this.state.Top_store);
-        // console.log("Store By Id:", this.state.Store_Id)
-        //console.log("Top_deals:", this.state.Top_Deals)
-        //console.log("Deals By Id:", this.state.Deal_Id)
+
         this.state.Id = id;
         let stores = this.state.Top_store;
         for (const key of stores) {
             if (key?.id == id) {
-                //console.log("key", key)
-                //console.log("id", id)
                 this.setState({ Store_Id: key.stores })
             }
         }

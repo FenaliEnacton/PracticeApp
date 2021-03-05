@@ -10,7 +10,7 @@ const ContainerHeight = (winHeight * 20) / 100
 const BoxWidth = (winWidth * 50) / 100
 
 function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail, navigation }) {
-    const [color, setcolor] = useState("")
+
     // console.log("Loader :::", Loader)
     const COLORS_SETS = {
         2: [

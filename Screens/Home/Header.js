@@ -4,6 +4,7 @@ import { AppImage } from '@assets/Images'
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import Modal from '../../Componants/Modal'
 import Contents from '../../Componants/Modal/contents'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const winHeight = Dimensions.get('screen').height
 const winWidth = Dimensions.get('screen').width
@@ -12,7 +13,7 @@ const ViewHeight = (winHeight * 6) / 100
 
 
 const Header = ({ animatedValue, ToggleModel }) => {
-
+    const insets = useSafeAreaInsets();
     const headerOpacity = animatedValue.interpolate({
         inputRange: [0, 50],
         outputRange: [0, 1],
@@ -31,9 +32,9 @@ const Header = ({ animatedValue, ToggleModel }) => {
 
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { paddingTop: insets.top + 10 }]}>
             <Modal toggle={TModel} toggleModel={toggleModel} Content={Contents} />
-            <View style={styles.h_view}>
+            <View style={[styles.h_view]}>
                 <TouchableOpacity onPress={() => { toggleModel() }}>
                     <Image style={styles.icon} source={AppImage.menu_icon} />
                 </TouchableOpacity>
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     h_view: {
         height: ViewHeight,
         width: winWidth,
-        //backgroundColor: 'lightblue',
+        backgroundColor: 'lightblue',
         //paddingVertical: 20,
         marginTop: 30,
         flexDirection: 'row',
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         marginLeft: 10,
         marginTop: 5,
+
     },
     welcom_view: {
         position: 'absolute',

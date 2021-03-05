@@ -1,8 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform, Image } from 'react-native'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import Clipboard from '@react-native-community/clipboard';
 
 const CardContent = ({ toggleModel, Stores }) => {
+
+    clipboardhandler = (code) => {
+        Clipboard.setString(code);
+        console.log("Code.", code, ".");
+    }
     //console.log("STores Details From card:", Stores)
     return (
         <View style={styles.rootView}>
@@ -26,9 +32,13 @@ const CardContent = ({ toggleModel, Stores }) => {
                     </View>
                     {/* if code == null  */}
                     <View style={styles.code}>
-                        {Stores?.code != null ? <View style={styles.coupon_view}>
+                        {Stores?.code == 'No Vouchercode required' ? <View onPress={() => { clipboardhandler(Stores.code) }} style={styles.coupon_view}>
                             <Text style={{ fontSize: 12, color: '#E6936B' }}>{Stores?.code}</Text>
-                        </View>
+                        </View> : null}
+
+                        {Stores?.code != null && Stores?.code != 'No Vouchercode required' ? <TouchableOpacity onPress={() => { clipboardhandler(Stores.code) }} style={styles.coupon_view}>
+                            <Text style={{ fontSize: 12, color: '#E6936B' }}>{Stores?.code}</Text>
+                        </TouchableOpacity>
                             : null}
                         <View  ><Text style={{ fontSize: 12 }}>{Stores?.expiry_date}</Text></View>
                     </View>
