@@ -43,7 +43,7 @@ export default CardContent
 
 const styles = StyleSheet.create({
     rootView: {
-        height: "50%",
+        height: "40%",
         backgroundColor: "white",
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,

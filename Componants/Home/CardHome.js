@@ -69,10 +69,11 @@ function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail,
                 data={Top_store}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index }) => {
-                    //console.log("Top_sTORE FLATLIST::::", index)
+
+                    //console.log("Top_sTORE FLATLIST::::", item)
                     //console.log("Color Set", COLORS_SETS[2][index % COLORS_SETS[2].length])
                     return (
-                        <TouchableOpacity onPress={() => navigation.navigate('StoresDetails')} style={[styles.Card, { backgroundColor: COLORS_SETS[2][index % COLORS_SETS[2].length] }]}>
+                        <TouchableOpacity onPress={() => navigation.navigate('StoresDetails', { itemId: item.id })} style={[styles.Card, { backgroundColor: COLORS_SETS[2][index % COLORS_SETS[2].length] }]}>
                             <View style={styles.img_view}>
                                 <Image style={styles.Img} source={{
                                     uri: item.logo

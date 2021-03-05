@@ -9,7 +9,7 @@ export const StoreReducer = (state = initialstate, action) => {
         case types.REQUEST_STORE_DATA:
             return {
                 ...state,
-
+                loading: true
             }
         case types.FETCH_STORE_DATA:
             return {
@@ -22,7 +22,8 @@ export const StoreReducer = (state = initialstate, action) => {
 
         case types.REQUEST_STORE_DETAIL:
             return {
-                ...state
+                ...state,
+                loading: true
             }
             break;
 
