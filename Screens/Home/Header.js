@@ -82,10 +82,11 @@ const styles = StyleSheet.create({
     h_view: {
         height: ViewHeight,
         width: winWidth,
-        backgroundColor: 'lightblue',
+        //backgroundColor: 'lightblue',
         //paddingVertical: 20,
         marginTop: 30,
         flexDirection: 'row',
+        alignItems: "center"
         // flex: 1
     },
     icon: {
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         marginLeft: 10,
         marginTop: 5,
+
 
     },
     welcom_view: {

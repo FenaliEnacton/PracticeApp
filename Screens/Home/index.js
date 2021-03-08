@@ -48,7 +48,7 @@ class Home extends Component {
             this.props.fetch_Stores();
             this.setState({ flag: 1 })
         }
-        console.log('Loading state CDM:', this.props.Loader);
+        //console.log('Loading state CDM:', this.props.Loader);
     }
 
     componentDidUpdate(prevProps, preState) {
@@ -170,11 +170,11 @@ class Home extends Component {
                     bounces={false}
                     bouncesZoom={false}>
                     <View style={styles.header}>
-                        <Animated.View style={[styles.search, { opacity: WelcomeOpacity }]}>
-                            <TouchableOpacity >
+                        <TouchableOpacity>
+                            <Animated.View style={[styles.search, { opacity: WelcomeOpacity }]}>
                                 <Text style={{ color: 'grey', alignSelf: 'center' }}>Search Cashback, Stores, Categories</Text>
-                            </TouchableOpacity>
-                        </Animated.View>
+                            </Animated.View>
+                        </TouchableOpacity>
                         <View style={styles.image_view}>
                             <CarouselCards />
                         </View>

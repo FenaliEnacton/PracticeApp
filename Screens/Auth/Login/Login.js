@@ -46,7 +46,7 @@ const Login = ({ navigation }) => {
                 <ImageBackground style={styles.bg_image} source={AppImage.auth_bg_image} />
                 <View style={styles.footer}>
 
-                    <TouchableOpacity style={styles.close_btn_view} onPress={() => { console.log("navigation:", navigation); navigation.goBack(); }}>
+                    <TouchableOpacity style={styles.close_btn_view} onPress={() => { navigation.goBack(); }}>
                         <Image style={styles.close_btn} source={AppImage.close_icon_img} />
                     </TouchableOpacity>
                     <View style={styles.child_footer}>

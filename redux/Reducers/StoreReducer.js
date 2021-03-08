@@ -29,6 +29,7 @@ export const StoreReducer = (state = initialstate, action) => {
             break;
 
         case types.SUCCESS_STORE_DETAIL:
+
             return {
                 ...state,
                 data: action.data,
