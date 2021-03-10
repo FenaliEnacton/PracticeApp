@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Dimensions, StyleSheet, Image, TouchableOpacity, Platform, TouchableNativeFeedback } from 'react-native'
 import { connect } from 'react-redux'
-import { Request_store_detail } from '../../redux/Actions/StoreAction'
+import { Request_store_detail, Request_store_data } from '../../redux/Actions/StoreAction'
 import Icon from 'react-native-vector-icons/AntDesign';
 import Search from 'react-native-vector-icons/Ionicons';
+import Down from 'react-native-vector-icons/Entypo';
 import { TouchableOpacity as Button } from 'react-native-gesture-handler'
 
 
@@ -22,28 +23,31 @@ class StoresDetails extends React.Component {
         super(props);
         this.state = {
             store: {},
-            loading: true
+            loading: true,
+            initialCBRates: []
+
         };
     }
 
 
     componentDidMount() {
-        this.props.request_store();
-        console.log("CDMount")
+        //this.props.request_store();
+        this.setState({ store: this.props.route.params?.itemId?.store })
+        //this.setState({ initialCBRates: this.props.route.params?.itemId?.store?.cashback?.slice(0, 2) })
+        // console.log("CDMount", this.props.route.params);
     }
 
     componentDidUpdate(prevProps, preState) {
+        //console.log("cdm", store)
 
-        if (preState.store == this.state.store) {
-            console.log("CDU")
-            for (const key in this.props.Stores) {
-                for (const val of this.props.Stores[key]) {
-                    if (this.props.route.params?.itemId == val.id) {
-                        this.setState({ store: val, loading: false });
-                    }
-                }
-            }
+        if (preState.initialCBRates == this.state.initialCBRates) {
+            console.log("cdm CALLED")
+            this.setState({ initialCBRates: this.props.route.params?.itemId?.store?.cashback?.slice(0, 2) })
         }
+    }
+
+    view_More = () => {
+        this.setState({ initialCBRates: this.props.route.params?.itemId?.store?.cashback })
     }
 
     render() {
@@ -91,19 +95,46 @@ class StoresDetails extends React.Component {
                 <View style={styles.mid_view}>
                     <View style={styles.mid_child}>
                         <Text>Tracked Within</Text>
-                        <Text style={{ color: "grey" }}>{this.state.store?.confirm_duration}</Text>
+                        <Text style={{ fontWeight: 'bold' }}>{this.state.store?.confirm_duration}</Text>
                     </View>
                     <View style={styles.mid_child}>
                         <Text>Paid Within</Text>
-                        <Text style={{ color: "grey" }}>{this.state.store?.confirm_days?.slice(0, -9)}</Text>
+                        <Text style={{ fontWeight: 'bold' }}>{this.state.store?.confirm_days}</Text>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}>
                         <Text>Missing Cashback</Text>
-                        {this.state.loading ? <Text></Text> :
-                            this.state.store?.is_claimable ? <Text style={{ color: "grey" }}>Allowed ✔️</Text> : <Text>Not Allowed</Text>}
-
+                        {
+                            this.state.store?.is_claimable ? <Text style={{ fontWeight: 'bold' }}>Allowed ✔️</Text> : <Text>Not Allowed</Text>}
                     </View>
-
+                </View>
+                <View style={styles.cashback_rate}>
+                    <Text style={{ fontWeight: 'bold' }}>Cashback Rates</Text>
+                    <View style={styles.category_box}>
+                        <FlatList
+                            data={this.state.initialCBRates}
+                            style={styles.flatlist_view}
+                            keyExtractor={(item, index) => (index.toString())}
+                            renderItem={({ item }) => {
+                                // console.log("Id", item.id)
+                                return (
+                                    <View style={{ maxHeight: 150, minHeight: 40, justifyContent: 'space-between', alignItems: 'center', borderBottomColor: 'lightgrey', borderBottomWidth: 0.7, flexDirection: 'row' }}>
+                                        <Text style={{ flex: 0.9, marginLeft: 10 }}>{item.title}</Text>
+                                        <Text style={{ flex: 0.1, marginRight: 5, color: '#E6936B', textAlign: 'center' }}>{item.cashback}</Text>
+                                    </View>
+                                )
+                            }}
+                        />
+                    </View>
+                    {this.state.store?.cashback?.length > 2 ? <TouchableOpacity onPress={() => this.view_More()} style={styles.View_more}>
+                        <Text>View More</Text>
+                        <Down name={'chevron-down'} size={20} />
+                    </TouchableOpacity> : null}
+                </View>
+                <View style={styles.cashback_rate}>
+                    <Text style={{ fontWeight: 'bold' }}>Coupons & Offers</Text>
+                </View>
+                <View>
+                    <View style={styles.Coupons_Card}></View>
                 </View>
             </View>
         )
@@ -167,7 +198,8 @@ const styles = StyleSheet.create({
     Img: {
         height: 50,
         width: 120,
-        borderRadius: 5
+        borderRadius: 5,
+        resizeMode: 'contain'
     },
     text: {
         color: 'grey',
@@ -196,18 +228,60 @@ const styles = StyleSheet.create({
         borderRightColor: 'black',
         alignItems: 'center',
         justifyContent: 'space-evenly'
+    },
+    cashback_rate: {
+        marginTop: 20,
+        marginHorizontal: 10,
+
+    },
+    flatlist_view: {
+        maxHeight: 200
+    },
+    category_box: {
+        //height: 20,
+        marginTop: 10,
+        borderRadius: 5,
+        backgroundColor: 'white',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'rgba(0,0,0,0.5)',
+                shadowOffset: { width: 0.5, height: 1 },
+                shadowOpacity: 0.5
+            },
+            android: {
+                elevation: 5
+            },
+        }),
+    },
+    View_more: {
+        height: 30,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#E6936B',
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+        ...Platform.select({
+            ios: {
+                shadowColor: 'rgba(0,0,0,0.5)',
+                shadowOffset: { width: 0.5, height: 1 },
+                shadowOpacity: 0.5
+            },
+            android: {
+                elevation: 5
+            },
+        }),
+    },
+    Coupons_Card: {
+        height: 120,
+        width: 170,
+        backgroundColor: 'pink',
+        marginRight: 10,
+        paddingLeft: 13,
+        paddingTop: 12,
+        borderRadius: 10,
     }
 })
 
-const X = (state) => {
-    return {
-        Stores: state.StoreReducer.data
-    }
-}
 
-const Y = (dispatch) => {
-    return {
-        request_store: () => dispatch(Request_store_detail())
-    }
-}
-export default connect(X, Y)(StoresDetails);
+export default StoresDetails;

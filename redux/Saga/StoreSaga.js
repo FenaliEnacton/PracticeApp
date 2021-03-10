@@ -4,6 +4,7 @@ import axios from 'axios';
 import Config from '../../config/url_config'
 import { Fetch_store_api, Request_store_api } from '../Services/apis';
 import { Fetch_store_data, Success_store_detail } from '../Actions/StoreAction';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 const rootAPI = axios.create({
@@ -31,13 +32,15 @@ function* Fetch_Store_Saga() {
 
 }
 
-function* Request_Store_Saga() {
+function* Request_Store_Saga(action) {
 
-    const response = yield call(Request_store_api, Config.API_URL + Config.PUBLIC_PREFIX + '/app/stores');
+    const response = yield call(Request_store_api, Config.CASHBEEZ_URL + Config.PUBLIC_PREFIX + '/app/storeInfo/' + action.store_id);
+    //console.log("Request_saga", response)
     if (response.ok) {
 
         //console.log("Store_More_Info:", response.data.data)
         yield put(Success_store_detail(response.data.data))
+        action.navigation.navigate('StoresDetails', { itemId: response.data.data })
 
     }
     else

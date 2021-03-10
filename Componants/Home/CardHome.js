@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, FlatList, StyleSheet, Dimensions } from 'react-native'
 import CardLoader from '../../Componants/Home/Loader';
+import { Request_store_detail, Request_store_data } from '../../redux/Actions/StoreAction'
 import Modal from '../Modal'
 import CardContent from '../Modal/cardContent'
+import { useSelector, useDispatch } from 'react-redux'
+import { StoreReducer } from '../../redux/Reducers/StoreReducer'
 
 const winHeight = Dimensions.get('screen').height
 const winWidth = Dimensions.get('screen').width
@@ -10,8 +13,14 @@ const ContainerHeight = (winHeight * 20) / 100
 const BoxWidth = (winWidth * 50) / 100
 
 function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail, navigation }) {
+    const dispatch = useDispatch();
+    const Stores = useSelector(state => state.StoreReducer.data)
+    const loader = useSelector(state => state.StoreReducer.loading)
+    useEffect(() => {
 
-    // console.log("Loader :::", Loader)
+
+    }, [])
+
     const COLORS_SETS = {
         2: [
             '#CCE6F6',
@@ -60,6 +69,28 @@ function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail,
     //     //setcolor(key)
     //     console.log("Colors :", COLORS_SETS)
     // }
+    const More_Info = (id) => {
+
+
+        dispatch(Request_store_detail(id, navigation));
+        // console.log("Loading..", loader)
+        // var res = Stores.store
+        // console.log("object", res)
+        // navigation.navigate('StoresDetails', { itemId: res })
+        // console.log("Stores:", Stores);
+        // if (Stores != []) {
+
+        //     const pro = new Promise((resolve, reject) => {
+        //         dispatch(Request_store_detail(id));                
+        //         resolve(Stores.store)
+        //     }).then((data) => {
+        //         navigation.navigate('StoresDetails', { itemId: data })
+        //     })
+        // }
+
+
+
+    }
     return (
         <View style={styles.Container}>
             <FlatList
@@ -73,7 +104,7 @@ function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail,
                     //console.log("Top_sTORE FLATLIST::::", item)
                     //console.log("Color Set", COLORS_SETS[2][index % COLORS_SETS[2].length])
                     return (
-                        <TouchableOpacity onPress={() => navigation.navigate('StoresDetails', { itemId: item.id })} style={[styles.Card, { backgroundColor: COLORS_SETS[2][index % COLORS_SETS[2].length] }]}>
+                        <TouchableOpacity onPress={() => { More_Info(item.id) }} style={[styles.Card, { backgroundColor: COLORS_SETS[2][index % COLORS_SETS[2].length] }]}>
                             <View style={styles.img_view}>
                                 <Image style={styles.Img} source={{
                                     uri: item.logo
@@ -108,7 +139,6 @@ function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail,
                             <View style={styles.text}>
                                 <Text style={{ fontSize: 12, fontWeight: 'bold' }}>{item.store.name}</Text>
                                 <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#E6936B' }}>{item.store.cashback_string}</Text>
-
                             </View>
                         </TouchableOpacity>
                     )
@@ -120,7 +150,18 @@ function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail,
         </View>
     )
 }
+// const X = (state) => {
+//     return {
+//         Stores: state.StoreReducer?.stores,
+//         Loader: state.StoreReducer?.loading
+//     }
+// }
 
+// const Y = (dispatch) => {
+//     return {
+//         fetch_Stores: (id) => dispatch(Request_store_detail(id))
+//     }
+// }
 export default CardHome
 const styles = StyleSheet.create({
     Container: {

@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const winHeight = Dimensions.get('screen').height
 const winWidth = Dimensions.get('screen').width
-const ContainerHeight = (winHeight * 13) / 100
+const ContainerHeight = 65
 const ViewHeight = (winHeight * 6) / 100
 
 
@@ -32,9 +32,8 @@ const Header = ({ animatedValue, ToggleModel }) => {
 
 
     return (
-        <View style={[styles.container, { paddingTop: insets.top + 10 }]}>
-            <Modal toggle={TModel} toggleModel={toggleModel} Content={Contents} />
-            <View style={[styles.h_view]}>
+        <View style={[styles.container, { marginTop: insets.top + 10 }]}>
+            <View style={styles.h_view}>
                 <TouchableOpacity onPress={() => { toggleModel() }}>
                     <Image style={styles.icon} source={AppImage.menu_icon} />
                 </TouchableOpacity>
@@ -60,7 +59,7 @@ const Header = ({ animatedValue, ToggleModel }) => {
                 </View>
 
             </View>
-
+            <Modal toggle={TModel} toggleModel={toggleModel} Content={Contents} />
         </View>
     )
 }
@@ -70,6 +69,11 @@ const styles = StyleSheet.create({
         height: ContainerHeight,
         width: winWidth,
         backgroundColor: '#1F2732',
+        alignItems: 'center',
+        justifyContent: 'center'
+        // position: 'absolute',
+        // top: 0,
+
         //flex: 1
     },
     bg_image: {
@@ -84,9 +88,14 @@ const styles = StyleSheet.create({
         width: winWidth,
         //backgroundColor: 'lightblue',
         //paddingVertical: 20,
-        marginTop: 30,
+        //paddingTop: 15,
         flexDirection: 'row',
-        alignItems: "center"
+        position: "absolute",
+        top: 0,
+        alignItems: "center",
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: 8
         // flex: 1
     },
     icon: {
@@ -94,8 +103,7 @@ const styles = StyleSheet.create({
         width: 25,
         resizeMode: 'contain',
         marginLeft: 10,
-        marginTop: 5,
-
+        alignContent: 'center',
 
     },
     welcom_view: {
@@ -103,12 +111,16 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         left: 35,
         opacity: 1,
+        //alignItems: 'center'
+        justifyContent: 'center',
+        width: 140
     },
     search_view: {
-        position: 'relative',
+        // position: 'relative',
         marginHorizontal: 15,
         opacity: 0,
-        marginVertical: 5
+        marginVertical: 5,
+        justifyContent: 'center'
     },
     search: {
         height: ViewHeight - 5,
@@ -116,16 +128,16 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: 'white',
         justifyContent: 'center',
-        ...Platform.select({
-            ios: {
-                shadowColor: 'rgba(0,0,0,0.5)',
-                shadowOffset: { width: 0.5, height: 1 },
-                shadowOpacity: 0.5
-            },
-            android: {
-                elevation: 10
-            },
-        }),
+        // ...Platform.select({
+        //     ios: {
+        //         shadowColor: 'rgba(0,0,0,0.5)',
+        //         shadowOffset: { width: 0.5, height: 1 },
+        //         shadowOpacity: 0.5
+        //     },
+        //     android: {
+        //         elevation: 10
+        //     },
+        // }),
     },
 })
 export default Header

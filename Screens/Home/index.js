@@ -33,6 +33,7 @@ class Home extends Component {
             Offer_Id: {},
             Top_Deals: {},
             Deal_Id: {},
+            Category: {},
             offset: new Animated.Value(0),
             //isModel: false,
             CarouselItems: ["https://www.google.com/url?sa=i&url=https%3A%2F%2Fstore.doboz.in%2Foffers&psig=AOvVaw2o1cIOFDp40eHrcbhuSgyb&ust=1614671165290000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLC07PzMju8CFQAAAAAdAAAAABAJ",
@@ -60,6 +61,7 @@ class Home extends Component {
             this.setState({ Offer_Id: this.props?.Stores?.data?.data['procash/top-offers']?.categories[0]?.coupons })
             this.setState({ Top_Deals: this.props.Stores?.data?.data['procash/top-deals']?.categories })
             this.setState({ Deal_Id: this.props.Stores?.data?.data['procash/top-deals']?.categories[0]?.deals })
+            //this.setState({ Category: this.props.Stores?.data?.data['procash/categories']?.StoreCategory})
             console.log('Loading state:', this.props.Loader);
             //this.setState({ offset: new Animated.Value(0) })
         }
@@ -241,18 +243,18 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 15,
         //backgroundColor: 'black'
     },
-    search_view: {
-        position: 'relative',
-        marginHorizontal: 15,
-        opacity: 1,
-        marginVertical: 10
-    },
+    // search_view: {
+    //     // position: 'relative',
+    //     marginHorizontal: 15,
+    //     opacity: 1,
+    //     marginBottom: 10
+    // },
     search: {
         alignSelf: "center",
         height: 37,
         width: winWidth - 25,
         borderRadius: 10,
-        marginTop: 12,
+        // marginBottom: 12,
         backgroundColor: 'white',
         justifyContent: 'center',
 

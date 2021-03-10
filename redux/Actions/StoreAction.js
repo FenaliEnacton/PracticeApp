@@ -17,10 +17,11 @@ export const Request_store_data = () => {
     }
 }
 
-export const Request_store_detail = () => {
+export const Request_store_detail = (data, navigation) => {
     return {
         type: types.REQUEST_STORE_DETAIL,
-
+        store_id: data,
+        navigation: navigation
     }
 }
 

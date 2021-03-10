@@ -6,8 +6,17 @@ export const rootApi = apisauce.create({
     baseURL: config.API_URL,
     headers: {
         'Cache-Control': 'no-cache',
+        'locale': "en"
     },
 });
+
+export const CashRoot = apisauce.create({
+    baseURL: config.CASHBEEZ_URL,
+    headers: {
+        'Cache-Control': 'no-cache',
+        'locale': "en"
+    },
+})
 
 export const Fetch_store_api = (url) => {
     const res = rootApi.get(`${config.API_URL + url}`)
@@ -16,7 +25,7 @@ export const Fetch_store_api = (url) => {
 }
 
 export const Request_store_api = (url) => {
-    const res = rootApi.get(url)
+    const res = CashRoot.get(url)
     //console.log("Saga DAta", res)
     return res;
 }

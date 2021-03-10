@@ -6,6 +6,7 @@ import {
     Image
 } from 'react-native';
 import { AppImage } from '@assets/Images';
+
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import { UserFBLOgin } from '../../../redux/Services/apis'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,7 +26,7 @@ const LoginWith = ({ styles }) => {
                         (data) => {
                             //console.log(data.accessToken.toString());
                             UserFBLOgin(data.accessToken.toString()).then((data) => {
-                                //console.log("Data:", data);
+                                console.log("Data:", data);
                                 dispatch(Success_user_fb_login(data));
                             })
                         }
