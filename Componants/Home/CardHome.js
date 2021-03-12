@@ -12,14 +12,21 @@ const winWidth = Dimensions.get('screen').width
 const ContainerHeight = (winHeight * 20) / 100
 const BoxWidth = (winWidth * 50) / 100
 
-function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail, navigation }) {
+function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail, navigation, }) {
     const dispatch = useDispatch();
     const Stores = useSelector(state => state.StoreReducer.data)
-    const loader = useSelector(state => state.StoreReducer.loading)
+    const loader = useSelector(state => state.StoreReducer.CardLoader)
     useEffect(() => {
+        // if (togglePageLoader != null) {
+        //     if (loader) {
+        //         togglePageLoader(true);
+        //     }
+        //     else {
+        //         togglePageLoader(false);
+        //     }
+        // }
 
-
-    }, [])
+    }, []);
 
     const COLORS_SETS = {
         2: [
@@ -73,7 +80,8 @@ function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail,
 
 
         dispatch(Request_store_detail(id, navigation));
-        // console.log("Loading..", loader)
+
+        //console.log("Loading..", loader)
         // var res = Stores.store
         // console.log("object", res)
         // navigation.navigate('StoresDetails', { itemId: res })

@@ -12,6 +12,8 @@ import Carousel from 'react-native-snap-carousel';
 import CarouselCards from '../../Componants/Slider/CarouselCards'
 import Contents from '../../Componants/Modal/contents';
 import CardContent from '../../Componants/Modal/cardContent';
+import LoaderKit from 'react-native-loader-kit'
+import PageLoader from '../../Componants/PageLoader';
 
 const winHeight = Dimensions.get('screen').height
 const winWidth = Dimensions.get('screen').width
@@ -35,9 +37,8 @@ class Home extends Component {
             Deal_Id: {},
             Category: {},
             offset: new Animated.Value(0),
-            //isModel: false,
-            CarouselItems: ["https://www.google.com/url?sa=i&url=https%3A%2F%2Fstore.doboz.in%2Foffers&psig=AOvVaw2o1cIOFDp40eHrcbhuSgyb&ust=1614671165290000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLC07PzMju8CFQAAAAAdAAAAABAJ",
-                "https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.online.citibank.co.in%2Fspecial-offers%2Fhome%2Fimages%2FNew_Offers%2Fthumbnail%2FNew-Offers.jpg&imgrefurl=https%3A%2F%2Fwww.online.citibank.co.in%2Fcredit-card%2Foffers&tbnid=rXEN8KPkA00BKM&vet=12ahUKEwi_uJT7zI7vAhUj6zgGHQnkCIoQMygBegUIARDTAQ..i&docid=WQ7gqmy7JKPwvM&w=608&h=440&q=offers%20images&ved=2ahUKEwi_uJT7zI7vAhUj6zgGHQnkCIoQMygBegUIARDTAQ"]
+            isPageLoader: false,
+
         }
         // console.log('Constructor called....');
 
@@ -62,7 +63,6 @@ class Home extends Component {
             this.setState({ Top_Deals: this.props.Stores?.data?.data['procash/top-deals']?.categories })
             this.setState({ Deal_Id: this.props.Stores?.data?.data['procash/top-deals']?.categories[0]?.deals })
             //this.setState({ Category: this.props.Stores?.data?.data['procash/categories']?.StoreCategory})
-            console.log('Loading state:', this.props.Loader);
             //this.setState({ offset: new Animated.Value(0) })
         }
     }
@@ -132,10 +132,11 @@ class Home extends Component {
         }
     }
 
-    // toggleModel = () => {
-    //     this.setState({ isModel: !this.state.isModel });
-    //     //console.log("toggleModel")
-    // }
+    togglePageLoader = (val) => {
+        //console.log("Before LoaderVal:", this.state.isPageLoader);
+        this.setState({ isPageLoader: val });
+        //console.log("After LoaderVal:", this.state.isPageLoader);
+    }
 
     _renderItem({ item }) {
         return (
@@ -145,15 +146,27 @@ class Home extends Component {
         );
     }
 
+
+
     render() {
         const WelcomeOpacity = this.state.offset.interpolate({
             inputRange: [0, 20],
             outputRange: [1, 0],
             extrapolate: 'clamp'
         });
+        // return (
+        //     <PageLoader />
+        // )
         return (
 
             <View style={{ flex: 1 }}>
+
+                {/* <LoaderKit
+                    style={{ width: 50, height: 50 }}
+                    name={'BallPulse'} // Optional: see list of animations below
+                    size={50} // Required on iOS
+                    color={'red'} // Optional: color can be: 'red', 'green',... or '#ddd', '#ffffff',...
+                /> */}
                 <Header animatedValue={this.state.offset} />
                 <ScrollView onScroll={Animated.event([
                     {
@@ -182,6 +195,7 @@ class Home extends Component {
                         </View>
                     </View>
 
+
                     <StoreHeader loderStatus={this.props.Loader} Title={"Stores"} Top_store={this.state.Top_store} Store_Id={(id) => this.Store_Id_fun(id)} />
 
                     {this.props.Loader ? <CardLoader /> :
@@ -189,7 +203,8 @@ class Home extends Component {
                         <CardHome Top_store={this.state.Store_Id}
                             Top_offers={null}
                             card_Id={(id) => this.card_More_detail(id)}
-                            navigation={this.props.navigation} />
+                            navigation={this.props.navigation}
+                        />
                     }
                     <StoreHeader loderStatus={this.props.Loader}
                         Title={"View Offers By Categories"}
@@ -201,7 +216,8 @@ class Home extends Component {
                             colorCode={4}
                             Top_store={null}
                             card_Id={(id) => this.offers_More_detail(id)}
-                            card_more_detail={this.state.Card_Id} />
+                            card_more_detail={this.state.Card_Id}
+                        />
                     }
                     <StoreHeader loderStatus={this.props.Loader} Title={"Deals"} Top_store={this.state.Top_Deals} Store_Id={(id) => this.Deals_Id_fun(id)} />
                     {this.props.Loader ? <CardLoader /> :
@@ -209,13 +225,14 @@ class Home extends Component {
                             colorCode={8}
                             Top_store={null}
                             card_Id={(id) => this.Deals_more_detail(id)}
-                            card_more_detail={this.state.Card_Id} />
+                            card_more_detail={this.state.Card_Id}
+                        />
+                    }
+                    {this.props.CardLoader ?
+                        <PageLoader /> : null
                     }
 
                 </ScrollView>
-                {/* <Footer /> */}
-                {/* <Modal toggle={this.state.isModel} toggleModel={this.toggleModel} Content={Contents} /> */}
-                {/* <Modal toggle={this.state.isModel} toggleModel={this.toggleModel} Content={CardContent} /> */}
             </View>
         )
     }
@@ -223,7 +240,8 @@ class Home extends Component {
 const X = (state) => {
     return {
         Stores: state.StoreReducer?.stores,
-        Loader: state.StoreReducer?.loading
+        Loader: state.StoreReducer?.loading,
+        CardLoader: state.StoreReducer?.CardLoader
     }
 }
 
@@ -241,20 +259,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#1F2732',
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
-        //backgroundColor: 'black'
     },
-    // search_view: {
-    //     // position: 'relative',
-    //     marginHorizontal: 15,
-    //     opacity: 1,
-    //     marginBottom: 10
-    // },
     search: {
         alignSelf: "center",
         height: 37,
         width: winWidth - 25,
         borderRadius: 10,
-        // marginBottom: 12,
         backgroundColor: 'white',
         justifyContent: 'center',
 

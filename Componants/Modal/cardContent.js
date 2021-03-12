@@ -2,16 +2,23 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform, Image } from 'react-native'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import Clipboard from '@react-native-community/clipboard';
+import EasyToast from '../EasyToast';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 const CardContent = ({ toggleModel, Stores }) => {
 
     clipboardhandler = (code) => {
         Clipboard.setString(code);
-        console.log("Code.", code, ".");
+        // console.log("Code.", code, ".");
+    }
+    let toastRef;
+    const showToast = () => {
+        toastRef.show("  Copied  ");
     }
     //console.log("STores Details From card:", Stores)
     return (
         <View style={styles.rootView}>
+
             <View style={styles.containerView} >
                 <View style={styles.notch}></View>
                 <TouchableOpacity style={styles.close_btn} onPress={toggleModel} >
@@ -32,15 +39,17 @@ const CardContent = ({ toggleModel, Stores }) => {
                     </View>
                     {/* if code == null  */}
                     <View style={styles.code}>
-                        {Stores?.code == 'No Vouchercode required' ? <View onPress={() => { clipboardhandler(Stores.code) }} style={styles.coupon_view}>
+                        {Stores?.code == 'No Vouchercode required' ? <View style={styles.coupon_view}>
                             <Text style={{ fontSize: 12, color: '#E6936B' }}>{Stores?.code}</Text>
                         </View> : null}
 
-                        {Stores?.code != null && Stores?.code != 'No Vouchercode required' ? <TouchableOpacity onPress={() => { clipboardhandler(Stores.code) }} style={styles.coupon_view}>
+                        {Stores?.code != null && Stores?.code != 'No Vouchercode required' ? <TouchableOpacity onPress={() => { clipboardhandler(Stores.code); showToast(); }} style={styles.coupon_view}>
                             <Text style={{ fontSize: 12, color: '#E6936B' }}>{Stores?.code}</Text>
                         </TouchableOpacity>
                             : null}
                         <View  ><Text style={{ fontSize: 12 }}>{Stores?.expiry_date}</Text></View>
+                        <Toast style={{ backgroundColor: '#E6936B' }} textStyle={{ color: 'black' }} ref={(toast) => toastRef = toast} position={'top'} positionValue={25} />
+
                     </View>
                     <TouchableOpacity style={styles.shop_now_btn}>
                         <Text style={{ color: 'white' }}>Shop Now</Text>

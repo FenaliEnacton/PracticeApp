@@ -41,7 +41,6 @@ class StoresDetails extends React.Component {
         //console.log("cdm", store)
 
         if (preState.initialCBRates == this.state.initialCBRates) {
-            console.log("cdm CALLED")
             this.setState({ initialCBRates: this.props.route.params?.itemId?.store?.cashback?.slice(0, 2) })
         }
     }
@@ -133,7 +132,7 @@ class StoresDetails extends React.Component {
                 <View style={styles.cashback_rate}>
                     <Text style={{ fontWeight: 'bold' }}>Coupons & Offers</Text>
                 </View>
-                <View>
+                <View >
                     <View style={styles.Coupons_Card}></View>
                 </View>
             </View>
@@ -276,9 +275,7 @@ const styles = StyleSheet.create({
         height: 120,
         width: 170,
         backgroundColor: 'pink',
-        marginRight: 10,
-        paddingLeft: 13,
-        paddingTop: 12,
+        margin: 8,
         borderRadius: 10,
     }
 })

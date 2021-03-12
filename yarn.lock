@@ -5708,7 +5708,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.6.1", "prop-types@^15.6.2", "prop-types@^15.7.2":
+"prop-types@^15.5.10", "prop-types@^15.6.1", "prop-types@^15.6.2", "prop-types@^15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -5791,6 +5791,13 @@
   "resolved" "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
+"react-native-easy-toast@^2.0.0":
+  "integrity" "sha512-mLvHOy/slCJfgrLfOercIhVKslTF6D7NrJ7XLTRK3BCim7kNO1JdAgQ5+IF6bqdcUcFMIW/GwiauUbnSpynr8Q=="
+  "resolved" "https://registry.npmjs.org/react-native-easy-toast/-/react-native-easy-toast-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "prop-types" "^15.5.10"
+
 "react-native-fbsdk@^3.0.0":
   "integrity" "sha512-i0JocuzLlGk13J0xFDjm8GlX7SADAL2kh/syE/HOn5HHdW+PFjC31MNj5AtzIw2TicHXpHGO6VPKNfdWFbxboA=="
   "resolved" "https://registry.npmjs.org/react-native-fbsdk/-/react-native-fbsdk-3.0.0.tgz"
@@ -5820,6 +5827,11 @@
   dependencies:
     "prop-types" "^15.6.2"
     "react-native-iphone-x-helper" "^1.0.3"
+
+"react-native-loader-kit@^1.0.3":
+  "integrity" "sha512-AoFsaLzmHINEa9gREl6YuLJtXbpLfnssFnzNnUY7odbWSs3/ot0p06Urz9bdt+jgRJVy1umTW4gYMN3MZM2Yvg=="
+  "resolved" "https://registry.npmjs.org/react-native-loader-kit/-/react-native-loader-kit-1.0.3.tgz"
+  "version" "1.0.3"
 
 "react-native-lottie-splash-screen@^0.1.12":
   "integrity" "sha512-UrLsTGXF6kK5uiNElg+nh3WAgydtiQ7xFT2+unOrLeLdNZi4jyiZ83JgQFlo4tEN7GodZMn5/k8fUYsuus++Zw=="
@@ -5878,7 +5890,7 @@
     "prop-types" "^15.7.2"
     "yargs" "^16.1.1"
 
-"react-native@*", "react-native@^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || 1000.0.0", "react-native@>=0.42.0", "react-native@>=0.48.4", "react-native@>=0.50.0", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.59.0", "react-native@>=0.62.0-rc.0 <0.64.0", "react-native@0.63.4":
+"react-native@*", "react-native@^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || 1000.0.0", "react-native@>=0.20.0", "react-native@>=0.42.0", "react-native@>=0.48.4", "react-native@>=0.50.0", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.59.0", "react-native@>=0.60.0-rc.0 <1.0.x", "react-native@>=0.62.0-rc.0 <0.64.0", "react-native@0.63.4":
   "integrity" "sha512-I4kM8kYO2mWEYUFITMcpRulcy4/jd+j9T6PbIzR0FuMcz/xwd+JwHoLPa1HmCesvR1RDOw9o4D+OFLwuXXfmGw=="
   "resolved" "https://registry.yarnpkg.com/react-native/-/react-native-0.63.4.tgz"
   "version" "0.63.4"
@@ -5937,7 +5949,7 @@
     "react-is" "^16.8.6"
     "scheduler" "^0.19.1"
 
-"react@*", "react@^16.0", "react@^16.13.1", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@>=15.0.0", "react@>=16.0", "react@>=16.0.0", "react@~16.8.6 || ~16.9.0 || ~16.11.0 || ~16.13.1 || ~17.0.1", "react@16.13.1":
+"react@*", "react@^16.0", "react@^16.13.1", "react@^16.8.0 || ^17.0.0", "react@^16.8.1", "react@^16.8.3 || ^17", "react@>=15.0.0", "react@>=16.0", "react@>=16.0.0", "react@~16.8.6 || ~16.9.0 || ~16.11.0 || ~16.13.1 || ~17.0.1", "react@16.13.1":
   "integrity" "sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w=="
   "resolved" "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz"
   "version" "16.13.1"
