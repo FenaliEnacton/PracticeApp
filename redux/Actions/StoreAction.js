@@ -33,3 +33,35 @@ export const Success_store_detail = (data) => {
         data: data
     }
 }
+
+export const Request_Filter_data = (cats, stores, show_type, order_type, page_no, per_page, navigation) => {
+    return {
+        type: types.REQUEST_FILTER_DATA,
+        cats,
+        stores,
+        show_type,
+        order_type,
+        page_no,
+        per_page,
+        navigation
+        //loading: true
+    }
+}
+
+export const Success_Filter_data = (data) => {
+    //console.log("Action:", data);
+    return {
+        type: types.SUCCESS_FILTER_DATA,
+        filtered_coupons: data,
+        //loading: false
+    }
+}
+
+export const Failure_Filter_data = (data) => {
+    //console.log("Action:", data);
+    return {
+        type: types.FAILURE_FILTER_DATA,
+
+        //loading: false
+    }
+}

@@ -30,6 +30,10 @@ export const Request_store_api = (url) => {
     return res;
 }
 
+export const Request_filter_api = (url, body, header) => {
+    const res = rootApi.post(url, body, {})
+    return res;
+}
 
 export const user_auth_api = (url, body, header) => {
     return new Promise((resolve, reject) => {

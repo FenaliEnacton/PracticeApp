@@ -2,11 +2,14 @@ import * as types from '../Constant';
 const initialstate = {
     stores: [],
     data: [],
+    filter_data: [],
     loading: true,
-    CardLoader: true
+    CardLoader: true,
+    filterLoader: true
 }
 export const StoreReducer = (state = initialstate, action) => {
     switch (action.type) {
+        //Stores
         case types.REQUEST_STORE_DATA:
             return {
                 ...state,
@@ -22,11 +25,12 @@ export const StoreReducer = (state = initialstate, action) => {
             }
             break;
 
+        //data  
         case types.REQUEST_STORE_DETAIL:
             return {
                 ...state,
                 CardLoader: true,
-                loading: false,
+                //loading: false,
             }
             break;
 
@@ -34,9 +38,33 @@ export const StoreReducer = (state = initialstate, action) => {
             return {
                 ...state,
                 data: action.data,
-
                 CardLoader: false,
-                loading: false,
+                //loading: false,
+            }
+
+        //filter_data
+        case types.REQUEST_FILTER_DATA:
+            return {
+                ...state,
+                //loading: false,
+                //CardLoader: true,
+                filterLoader: true
+            }
+
+        case types.SUCCESS_FILTER_DATA:
+            return {
+                ...state,
+                filter_data: action.filtered_coupons,
+                //loading: false,
+                //CardLoader: false,
+                filterLoader: false
+            }
+
+        case types.FAILURE_FILTER_DATA:
+            return {
+                ...state,
+                filter_data: [],
+                CardLoader: false
             }
         default:
             return state;

@@ -182,6 +182,7 @@ class Home extends Component {
                 )}
                     scrollEventThrottle={16}
                     showsVerticalScrollIndicator={false}
+                    scrollEnabled={!this.props.CardLoader}
                     bounces={false}
                     bouncesZoom={false}>
                     <View style={styles.header}>
@@ -228,7 +229,8 @@ class Home extends Component {
                             card_more_detail={this.state.Card_Id}
                         />
                     }
-                    {this.props.CardLoader ?
+
+                    {this.props.CardLoader && this.props.FilterLoader ?
                         <PageLoader /> : null
                     }
 
@@ -241,7 +243,8 @@ const X = (state) => {
     return {
         Stores: state.StoreReducer?.stores,
         Loader: state.StoreReducer?.loading,
-        CardLoader: state.StoreReducer?.CardLoader
+        CardLoader: state.StoreReducer?.CardLoader,
+        FilterLoader: state.StoreReducer?.filterLoader
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, FlatList, StyleSheet, Dimensions } from 'react-native'
 import CardLoader from '../../Componants/Home/Loader';
-import { Request_store_detail, Request_store_data } from '../../redux/Actions/StoreAction'
+import { Request_store_detail, Request_store_data, Request_Filter_data } from '../../redux/Actions/StoreAction'
 import Modal from '../Modal'
 import CardContent from '../Modal/cardContent'
 import { useSelector, useDispatch } from 'react-redux'
@@ -80,6 +80,14 @@ function CardHome({ Top_store, Top_Offers, colorCode, card_Id, card_more_detail,
 
 
         dispatch(Request_store_detail(id, navigation));
+        // dispatch(Request_Filter_data([],
+        //     [id],
+        //     'popular',
+        //     1,
+        //     null,
+        //     null,
+        //     navigation
+        // ))
 
         //console.log("Loading..", loader)
         // var res = Stores.store
